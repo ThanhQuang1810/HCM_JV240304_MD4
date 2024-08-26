@@ -1,0 +1,46 @@
+
+create database quanlisach;
+use quanlisach;
+
+-- bảng category
+create table category (
+id int primary key auto increment,
+name varchar(100) not null,
+status tinyint default(1) check(status in (0,1))
+)
+
+-- bảng author
+create table author(
+id int primary key auto increment,
+name varchar(100) not null not unique,
+totalBook int default(0)
+)
+
+-- bảng book
+create table book(
+id int primary key auto increment,
+name varchar(150) not null,
+status tinyint default(1) check(status in (0,1))
+price float check(price > 100000),
+createDate dateTime default(now()),
+categoryId int not null,
+authorId int not null
+)
+
+-- thêm khóa ngoại
+alter table book
+add foreign key (categoryId) references category(id),
+alter table book
+add foreign key (authorId) references author(id);
+
+
+-- thêm dữ liệu
+insert into category(name) values
+('quan'),
+('ao'),
+('trang suc'),
+('quan tai'),
+('dien thoai');
+
+
+
