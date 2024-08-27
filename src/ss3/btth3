@@ -1,0 +1,33 @@
+create database ss3_bt1;
+use ss3_bt1;
+create table color(
+id int primary key auto_increment,
+name varchar(100),
+status bit
+);
+
+create table product (
+id int primary key auto_increment,
+naem varchar(100),
+created date
+
+);
+
+create table size(
+id int primary key auto_increment,
+name varchar(100),
+status bit
+);
+
+create table product_detail(
+id int primary key auto_increment,
+product_id int,
+color_id int,
+size_id int,
+price double,
+stock int,
+status bit,
+FOREIGN key (color_id) REFERENCES color(id),
+FOREIGN key (size_id) REFERENCES size(id),
+FOREIGN key (product_id) REFERENCES product(id)
+);
